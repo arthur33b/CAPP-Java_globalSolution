@@ -40,7 +40,7 @@ public class Aula {
     private Professor professor;
 
     @ManyToOne
-    @JoinColumn(name = "TB_COURAPP_ALUNO_ID_aluno", nullable = false)
+    @JoinColumn(name = "TB_CAPP_ALUNO_ID_aluno", nullable = false)
     private Aluno aluno;
 
     @OneToMany(mappedBy = "aula", cascade = CascadeType.ALL)

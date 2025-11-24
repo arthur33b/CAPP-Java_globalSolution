@@ -108,11 +108,11 @@ CREATE OR REPLACE PACKAGE PKG_CAPP_INSERCOES AS
     p_experiencia     IN TB_CAPP_PROFESSOR.experiencia_professor%TYPE
   );
   PROCEDURE PRC_INS_ALUNO (
-    p_id_aluno   IN TB_COURAPP_ALUNO.ID_aluno%TYPE,
-    p_nome       IN TB_COURAPP_ALUNO.nome_aluno%TYPE,
-    p_email      IN TB_COURAPP_ALUNO.email_aluno%TYPE,
-    p_senha      IN TB_COURAPP_ALUNO.senha_aluno%TYPE,
-    p_telefone   IN TB_COURAPP_ALUNO.telefone_aluno%TYPE
+    p_id_aluno   IN TB_CAPP_ALUNO.ID_aluno%TYPE,
+    p_nome       IN TB_CAPP_ALUNO.nome_aluno%TYPE,
+    p_email      IN TB_CAPP_ALUNO.email_aluno%TYPE,
+    p_senha      IN TB_CAPP_ALUNO.senha_aluno%TYPE,
+    p_telefone   IN TB_CAPP_ALUNO.telefone_aluno%TYPE
   );
   PROCEDURE PRC_INS_AULA (
     p_id_aula        IN TB_CAPP_AULA.ID_aula%TYPE,
@@ -122,7 +122,7 @@ CREATE OR REPLACE PACKAGE PKG_CAPP_INSERCOES AS
     p_qtd_hrs        IN TB_CAPP_AULA.qtd_hrs%TYPE,
     p_id_modalidade  IN TB_CAPP_MODALIDADE.ID_modalidade%TYPE,
     p_id_professor   IN TB_CAPP_PROFESSOR.ID_professor%TYPE,
-    p_id_aluno       IN TB_COURAPP_ALUNO.ID_aluno%TYPE
+    p_id_aluno       IN TB_CAPP_ALUNO.ID_aluno%TYPE
   );
   PROCEDURE PRC_INS_AVALIACAO (
     p_id_avaliacao IN TB_CAPP_AVALIACAO.ID_avaliacao%TYPE,
@@ -201,17 +201,17 @@ CREATE OR REPLACE PACKAGE BODY PKG_CAPP_INSERCOES AS
   END PRC_INS_PROFESSOR;
 
   PROCEDURE PRC_INS_ALUNO (
-    p_id_aluno   IN TB_COURAPP_ALUNO.ID_aluno%TYPE,
-    p_nome       IN TB_COURAPP_ALUNO.nome_aluno%TYPE,
-    p_email      IN TB_COURAPP_ALUNO.email_aluno%TYPE,
-    p_senha      IN TB_COURAPP_ALUNO.senha_aluno%TYPE,
-    p_telefone   IN TB_COURAPP_ALUNO.telefone_aluno%TYPE
+    p_id_aluno   IN TB_CAPP_ALUNO.ID_aluno%TYPE,
+    p_nome       IN TB_CAPP_ALUNO.nome_aluno%TYPE,
+    p_email      IN TB_CAPP_ALUNO.email_aluno%TYPE,
+    p_senha      IN TB_CAPP_ALUNO.senha_aluno%TYPE,
+    p_telefone   IN TB_CAPP_ALUNO.telefone_aluno%TYPE
   ) AS
   BEGIN
     IF PKG_CAPP_FUNCOES.FN_VALIDAR_EMAIL(p_email) = 0 THEN
       RAISE_APPLICATION_ERROR(-20002, 'E-mail de aluno inv�lido: ' || p_email);
     END IF;
-    INSERT INTO TB_COURAPP_ALUNO (
+    INSERT INTO TB_CAPP_ALUNO (
       ID_aluno, nome_aluno, email_aluno, senha_aluno,
       telefone_aluno, data_cadastro
     ) VALUES (
@@ -234,7 +234,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_CAPP_INSERCOES AS
     p_qtd_hrs        IN TB_CAPP_AULA.qtd_hrs%TYPE,
     p_id_modalidade  IN TB_CAPP_MODALIDADE.ID_modalidade%TYPE,
     p_id_professor   IN TB_CAPP_PROFESSOR.ID_professor%TYPE,
-    p_id_aluno       IN TB_COURAPP_ALUNO.ID_aluno%TYPE
+    p_id_aluno       IN TB_CAPP_ALUNO.ID_aluno%TYPE
   ) AS
   BEGIN
     IF p_qtd_hrs IS NULL OR p_qtd_hrs <= 0 THEN
@@ -244,7 +244,7 @@ CREATE OR REPLACE PACKAGE BODY PKG_CAPP_INSERCOES AS
       ID_aula, status_aula, Link_aula, preco_aula, qtd_hrs,
       TB_CAPP_MODALIDADE_ID_modalidade,
       TB_CAPP_PROFESSOR_ID_professor,
-      TB_COURAPP_ALUNO_ID_aluno
+      TB_CAPP_ALUNO_ID_aluno
     ) VALUES (
       p_id_aula, p_status_aula, p_link_aula, p_preco_aula, p_qtd_hrs,
       p_id_modalidade, p_id_professor, p_id_aluno

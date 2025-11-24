@@ -65,7 +65,7 @@ INSERT INTO TB_CAPP_PROFESSOR (
     SYSDATE
 );
 
-INSERT INTO TB_COURAPP_ALUNO (
+INSERT INTO TB_CAPP_ALUNO (
     ID_aluno, nome_aluno, email_aluno, 
     senha_aluno, telefone_aluno, data_cadastro
 ) VALUES (
@@ -221,7 +221,7 @@ INSERT INTO TB_CAPP_PROFESSOR (
 );
 
 -- Aluno de teste (senha: senha123)
-INSERT INTO TB_COURAPP_ALUNO (
+INSERT INTO TB_CAPP_ALUNO (
     ID_aluno, nome_aluno, email_aluno, 
     senha_aluno, telefone_aluno, data_cadastro
 ) VALUES (
